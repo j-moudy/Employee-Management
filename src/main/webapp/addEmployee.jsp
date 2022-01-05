@@ -5,12 +5,26 @@
   Time: 1:43 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Add Employee</title>
+    <link href="resources/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h3>Hello</h3>
+<form action="employee" method="post">
+    <label>Employee ID:</label>
+    <input type="text"  id="id" name="empID"> <br>
+
+    <label>Name:</label>
+    <input type="text"  id="name" name="empName" value=""> <br>
+
+    <label>Salary:</label>
+    <input type="text"  id="salary" name="empSalary" value=""> <br>
+
+    <input type="submit" value="Add Employee">
+</form>
+
+<a href="index.jsp"><button>Return Home</button></a>
+
 </body>
 </html>
