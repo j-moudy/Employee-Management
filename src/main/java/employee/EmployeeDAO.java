@@ -13,6 +13,8 @@ public class EmployeeDAO {
     private static final String INSERT_EMPLOYEE_SQL = "INSERT INTO EMPLOYEE VALUES (?,?,?)";
     private static final String SELECT_EMPLOYEE_BY_ID_SQL = "SELECT ID, NAME, SALARY FROM EMPLOYEE WHERE ID = ?";
     private static final String SELECT_ALL_EMPLOYEE_SQL = "SELECT * FROM EMPLOYEE";
+    private static final String DELETE_EMPLOYEE_SQL = "DELETE FROM EMPLOYEE WHERE ID = ?";
+    private static final String UPDATE_EMPLOYEE_SQL = "UPDATE EMPLOYEE SET NAME = ?, SALARY = ? WHERE ID = ?";
 
     public EmployeeDAO() {
         Connection connection = getConnection();
@@ -53,5 +55,17 @@ public class EmployeeDAO {
             throw new IllegalStateException("Error inserting into database", e);
         }
     }
+    public void deleteEmployee (Employee employee) {
+        Connection connection = getConnection();
 
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE_SQL);
+            preparedStatement.setInt(1, employee.getId());
+
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new IllegalStateException("Error deleting from database", e);
+        }
+    }
 }

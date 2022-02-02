@@ -25,6 +25,8 @@ public class EmployeeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
+        String action = request.getServletPath();
+        System.out.println(action);
         // Get the current session information to be used for sending response back to the front end
         HttpSession session = request.getSession();
 

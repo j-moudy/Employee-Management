@@ -8,10 +8,10 @@
 <html>
 <head>
     <title>Add Employee</title>
-    <link href="resources/styles.css" rel="stylesheet" type="text/css">
+    <link href="../resources/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="employee" method="post">
+<form action="../employee/add" method="post">
     <label>Employee ID:</label>
     <input type="text"  id="id" name="empID"> <br>
 
@@ -24,7 +24,7 @@
     <input type="submit" value="Add Employee">
 </form>
 
-<a href="index.jsp"><button>Return Home</button></a>
+<a href="../index.jsp"><button>Return Home</button></a>
 
 </body>
 </html>
