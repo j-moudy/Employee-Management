@@ -28,24 +28,25 @@ public class EmployeeServlet extends HttpServlet {
         // Get the current session information to be used for sending response back to the front end
         HttpSession session = request.getSession();
 
-        // Parameters received from the font end
-        int id = Integer.parseInt(request.getParameter("empID"));
-        String name = request.getParameter("empName");
-        double salary = Double.parseDouble(request.getParameter("empSalary"));
-        Employee employee = new Employee(id, name, salary);
-
         String action = request.getServletPath();
-        System.out.println(action);
+
         switch (action) {
             case "/employee/add":
+                // Parameters received from the font end
+                int id = Integer.parseInt(request.getParameter("empID"));
+                String name = request.getParameter("empName");
+                double salary = Double.parseDouble(request.getParameter("empSalary"));
+                Employee employee = new Employee(id, name, salary);
+
                 employeeDAO.insertEmployee(employee);
                 session.setAttribute("getAlert", "success");
                 response.sendRedirect("addEmployee.jsp");
                 break;
-            case "/employee/delete":
-                employeeDAO.deleteEmployee(employee);
+            case "/employee/remove":
+                employeeDAO.deleteEmployee(Integer.parseInt(request.getParameter("empID")));
+                session.setAttribute("getAlert", "success");
+                response.sendRedirect("removeEmployee.jsp");
                 break;
-
         }
 
     }

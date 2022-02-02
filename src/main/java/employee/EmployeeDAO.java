@@ -55,12 +55,12 @@ public class EmployeeDAO {
             throw new IllegalStateException("Error inserting into database", e);
         }
     }
-    public void deleteEmployee (Employee employee) {
+    public void deleteEmployee (int id) {
         Connection connection = getConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE_SQL);
-            preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setInt(1, id);
 
             preparedStatement.executeUpdate();
         }
