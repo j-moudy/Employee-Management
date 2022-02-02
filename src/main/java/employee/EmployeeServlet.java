@@ -12,6 +12,8 @@ import java.io.IOException;
 public class EmployeeServlet extends HttpServlet {
     private static final long serialVersionUID= 1L;
 
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
+
     public EmployeeServlet() {super ();}
 
     /**
@@ -27,9 +29,12 @@ public class EmployeeServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         // Parameters received from the font end
-        String id = request.getParameter("empID");
+        int id = Integer.parseInt(request.getParameter("empID"));
         String name = request.getParameter("empName");
-        String salary = request.getParameter("empSalary");
+        double salary = Double.parseDouble(request.getParameter("empSalary"));
+
+        Employee employee = new Employee(id, name, salary);
+        employeeDAO.insertEmployee(employee);
     }
 
 
