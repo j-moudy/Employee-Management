@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: jeremymoudy
@@ -9,6 +10,18 @@
 <head>
     <title>Add Employee</title>
     <link href="../resources/styles.css" rel="stylesheet" type="text/css">
+
+    <%
+        session.setMaxInactiveInterval(2);
+    %>
+    <script type="text/javascript" >
+        var msg = '<%=session.getAttribute("getAlert")%>';
+        if (msg !== "null") {
+            function alertName() {
+                alert("Success!");
+            }
+        }
+    </script>
 </head>
 <body>
 <form action="../employee/add" method="post">
@@ -23,6 +36,7 @@
 
     <input type="submit" value="Add Employee">
 </form>
+<script type="text/javascript">window.onload = alertName; </script>
 
 <a href="../index.jsp"><button>Return Home</button></a>
 
