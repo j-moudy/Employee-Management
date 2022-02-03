@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/employee")
 public class EmployeeServlet extends HttpServlet {
@@ -47,6 +48,11 @@ public class EmployeeServlet extends HttpServlet {
                 session.setAttribute("getAlert", "success");
                 response.sendRedirect("removeEmployee.jsp");
                 break;
+            case "/employee/list":
+//                List<Employee> employeeList = employeeDAO.selectAllEmployees();
+//                session.setAttribute("employeeList", employeeList);
+//                response.sendRedirect("listEmployees.jsp");
+                doGet(request, response);
         }
 
     }
@@ -55,4 +61,14 @@ public class EmployeeServlet extends HttpServlet {
     /**
      * The doGet method is used for sending data from the db to the font end for displaying to the user
      */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Employee> employeeList = employeeDAO.selectAllEmployees();
+//        HttpSession session = request.getSession();
+//        session.setAttribute("employeeList", employeeList);
+        //response.sendRedirect("listEmployee.jsp");
+        request.setAttribute("employeeList", employeeList);
+        request.getRequestDispatcher("listEmployee.jsp").forward(request, response);
+    }
 }

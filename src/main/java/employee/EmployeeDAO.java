@@ -1,6 +1,8 @@
 package employee;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDAO {
     private String url = "jdbc:mysql://localhost:3306/business-management";
@@ -67,5 +69,27 @@ public class EmployeeDAO {
         catch (SQLException e){
             throw new IllegalStateException("Error deleting from database", e);
         }
+    }
+
+    public List<Employee> selectAllEmployees(){
+        List<Employee> employeeList = new ArrayList<Employee>();
+        Connection connection = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EMPLOYEE_SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                double salary = resultSet.getDouble("salary");
+                employeeList.add(new Employee(id, name, salary));
+            }
+        }
+        catch (SQLException e){
+            throw new IllegalStateException("Error selecting all employees", e);
+        }
+
+        return employeeList;
     }
 }

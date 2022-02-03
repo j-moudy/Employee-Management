@@ -26,7 +26,7 @@
 <body>
 <form action="../employee/remove" method="post">
     <label>Employee ID:</label>
-    <input type="text" id="id" name="empID"> <br>
+    <input type="text" id="id" name="empID"> <br> <br>
 
     <input type="submit" value="Remove Employee">
 </form>
