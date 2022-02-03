@@ -49,10 +49,14 @@ public class EmployeeServlet extends HttpServlet {
                 response.sendRedirect("removeEmployee.jsp");
                 break;
             case "/employee/list":
-//                List<Employee> employeeList = employeeDAO.selectAllEmployees();
-//                session.setAttribute("employeeList", employeeList);
-//                response.sendRedirect("listEmployees.jsp");
                 doGet(request, response);
+                break;
+            case "/employee/search":
+                Employee emp = employeeDAO.selectEmployeeByID(Integer.parseInt(request.getParameter("empID")));
+                request.setAttribute("id", emp.getId());
+                request.setAttribute("name", emp.getName());
+                request.setAttribute("salary", emp.getSalary());
+                request.getRequestDispatcher("searchEmployee.jsp").forward(request, response);
         }
 
     }

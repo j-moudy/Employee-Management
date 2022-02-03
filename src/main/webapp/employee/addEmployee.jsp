@@ -31,7 +31,7 @@
     <label>Name:</label>
     <input type="text"  id="name" name="empName" value=""> <br>
 
-    <label>Salary:</label>
+    <label>Salary:$</label>
     <input type="text"  id="salary" name="empSalary" value=""> <br> <br>
 
     <input type="submit" value="Add Employee">
