@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: jeremymoudy
-  Date: 1/5/22
-  Time: 1:43 PM
-  To change this template use File | Settings | File Templates.
---%>
 <html>
 <head>
     <title>Add Employee</title>
@@ -36,9 +29,8 @@
 
     <input type="submit" value="Add Employee">
 </form>
+
 <script type="text/javascript">window.onload = alertName; </script>
-
 <a href="../index.jsp"><button>Return Home</button></a>
-
 </body>
 </html>

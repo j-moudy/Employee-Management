@@ -6,12 +6,11 @@ import java.util.List;
 
 public class EmployeeDAO {
     private String url = "jdbc:mysql://localhost:3306/business-management";
-    private String username = "root";
-    private String password = "rootpass";
+    private String username = "";
+    private String password = "";
 
     private Connection connection;
 
-    // SQL statements
     private static final String INSERT_EMPLOYEE_SQL = "INSERT INTO EMPLOYEE VALUES (?,?,?)";
     private static final String SELECT_EMPLOYEE_BY_ID_SQL = "SELECT ID, NAME, SALARY FROM EMPLOYEE WHERE ID = ?";
     private static final String SELECT_ALL_EMPLOYEE_SQL = "SELECT * FROM EMPLOYEE";
@@ -50,11 +49,10 @@ public class EmployeeDAO {
             preparedStatement.setInt(1, employee.getId());
             preparedStatement.setString(2, employee.getName());
             preparedStatement.setDouble(3, employee.getSalary());
-
             preparedStatement.executeUpdate();
         }
         catch (SQLException e){
-            throw new IllegalStateException("Error inserting into database", e);
+            e.printStackTrace();
         }
     }
     public void deleteEmployee (int id) {
@@ -63,11 +61,10 @@ public class EmployeeDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE_SQL);
             preparedStatement.setInt(1, id);
-
             preparedStatement.executeUpdate();
         }
         catch (SQLException e){
-            throw new IllegalStateException("Error deleting from database", e);
+            e.printStackTrace();
         }
     }
 
@@ -100,7 +97,7 @@ public class EmployeeDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE_BY_ID_SQL);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()){ // make sure the result set isn't empty
                 int empID = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 double salary = resultSet.getDouble(3);
@@ -108,7 +105,7 @@ public class EmployeeDAO {
             }
         }
         catch (SQLException e){
-            throw new IllegalStateException("Error selecting all employees", e);
+            throw new IllegalStateException("Error selecting employee by ID", e);
         }
         return employee;
     }
@@ -124,7 +121,7 @@ public class EmployeeDAO {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e){
-            throw new IllegalStateException("Could not update employee", e);
+            e.printStackTrace();
         }
     }
 }

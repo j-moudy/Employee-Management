@@ -10,7 +10,7 @@
     <a href="employee/searchEmployee.jsp"><button>Search for Employee</button></a>
     <a href="employee/removeEmployee.jsp"><button>Delete Employee</button></a>
     <a href="employee/editEmployee.jsp"><button>Edit Employee</button></a>
-    <form action="employee/list" method="post">
+    <form action="employee/list" method="get">
         <input type="submit" value="List Employees"/>
     </form>
 </div>
