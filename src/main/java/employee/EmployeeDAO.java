@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAO {
+    //TODO: Clean up code and add final comments before pushing to github.
     private String url = "jdbc:mysql://localhost:3306/business-management";
     private String username = "";
     private String password = "";
