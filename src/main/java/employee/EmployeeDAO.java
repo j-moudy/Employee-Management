@@ -92,4 +92,24 @@ public class EmployeeDAO {
 
         return employeeList;
     }
+
+    public Employee selectEmployeeByID(int id) {
+        Connection connection = getConnection();
+        Employee employee = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE_BY_ID_SQL);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                int empID = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                double salary = resultSet.getDouble(3);
+                employee = new Employee(empID, name, salary);
+            }
+        }
+        catch (SQLException e){
+            throw new IllegalStateException("Error selecting all employees", e);
+        }
+        return employee;
+    }
 }

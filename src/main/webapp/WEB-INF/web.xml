@@ -23,4 +23,9 @@
     <servlet-name>EmployeeServlet</servlet-name>
     <url-pattern>/employee/list</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <url-pattern>/employee/search</url-pattern>
+  </servlet-mapping>
 </web-app>
