@@ -57,6 +57,14 @@ public class EmployeeServlet extends HttpServlet {
                 request.setAttribute("name", emp.getName());
                 request.setAttribute("salary", emp.getSalary());
                 request.getRequestDispatcher("searchEmployee.jsp").forward(request, response);
+            case "/employee/edit":
+                int editID = Integer.parseInt(request.getParameter("empID"));
+                String editName = request.getParameter("empName");
+                double editSalary = Double.parseDouble(request.getParameter("empSalary"));
+                Employee editEmp = new Employee(editID, editName, editSalary);
+                employeeDAO.editEmployee(editEmp);
+                session.setAttribute("getAlert", "success");
+                response.sendRedirect("editEmployee.jsp");
         }
 
     }

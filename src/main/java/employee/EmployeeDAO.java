@@ -112,4 +112,19 @@ public class EmployeeDAO {
         }
         return employee;
     }
+
+    public void editEmployee(Employee employee) {
+        Connection connection = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_EMPLOYEE_SQL);
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setDouble(2, employee.getSalary());
+            preparedStatement.setInt(3, employee.getId());
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new IllegalStateException("Could not update employee", e);
+        }
+    }
 }
