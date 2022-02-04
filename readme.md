@@ -1,6 +1,5 @@
 # Employee Management App
 
----
 #### By Jeremy Moudy
 
 #### A basic employee management system. 
