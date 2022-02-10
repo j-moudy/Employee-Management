@@ -50,6 +50,8 @@ public class EmployeeDAO {
             preparedStatement.setString(2, employee.getName());
             preparedStatement.setDouble(3, employee.getSalary());
             preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -62,6 +64,8 @@ public class EmployeeDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE_SQL);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -82,6 +86,9 @@ public class EmployeeDAO {
                 double salary = resultSet.getDouble("salary");
                 employeeList.add(new Employee(id, name, salary));
             }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
         }
         catch (SQLException e){
             throw new IllegalStateException("Error selecting all employees", e);
@@ -103,6 +110,9 @@ public class EmployeeDAO {
                 double salary = resultSet.getDouble(3);
                 employee = new Employee(empID, name, salary);
             }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
         }
         catch (SQLException e){
             throw new IllegalStateException("Error selecting employee by ID", e);
@@ -119,6 +129,8 @@ public class EmployeeDAO {
             preparedStatement.setDouble(2, employee.getSalary());
             preparedStatement.setInt(3, employee.getId());
             preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
         }
         catch (SQLException e){
             e.printStackTrace();
